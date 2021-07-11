@@ -1,0 +1,12 @@
+button {
+    height: 30px;
+    width : 30px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+}
+
+button.current {
+    box-shadow: 0 0 0 2ox white,
+                0 0 0 4px black;
+}
