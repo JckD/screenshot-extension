@@ -29,5 +29,8 @@ function takeScreenShot(displayMediaOptions) {
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
     console.log('screenshot')
 
-    chrome.tabCapture.capture( obj, )
-})
+  chrome.scripting.executeScript({
+      target: { tabId: tab.id},
+      files: ['content-script.js']
+  });
+});

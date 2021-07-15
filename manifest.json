@@ -3,6 +3,9 @@
     "description" : "An easy to use screen shot extension",
     "version" : "1.0",
     "manifest_version" : 3,
+    "content-scripts": [{
+        "css": ["content.css"]
+    }],
     "background" : {
         "service_worker" : "background.js"
     },
