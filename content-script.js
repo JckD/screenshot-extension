@@ -1,21 +1,24 @@
-//  // chrome.tabCapture.capture( obj, )
-//  document.body.innerHTML += '<dialog>This is a dialog.<br><button>Close</button></dialog>';
-//  var dialog = document.querySelector("dialog")
-//  dialog.querySelector("button").addEventListener("click", function() {
-//      dialog.close()
-//  })
-//  dialog.showModal()
+
+
+
 
 document.body.innerHTML += '<div><div id="ss" onmousedown="return false" onselectstart="return false">Take a screen shot bitch<div/><button class="xbutton" id=quitSS>x</button><div>'
 
 
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+     enabled = message
+});
 
 var div = document.getElementById('ss'),x1 = window.width / 4, y1 = window.height / 4, x2 = window.width / 1, y2 = window.height / 1;
 
 div.style.border = '3px dotted #000';
+
 div.style.position = 'absolute';
-let select = false
-let enabled = true
+div.style.zIndex = 1;
+
+
+ select = false
+
 
 
 var quitSS_button = document.getElementById('quitSS');
@@ -26,9 +29,9 @@ quitSS_button.onclick = function(){
     select = false
     enabled = false
     x1 = window.width / 4;
-     y1 = window.height / 4;
-      x2 = window.width / 1;
-       y2 = window.height / 1;
+    y1 = window.height / 4;
+    x2 = window.width / 1;
+    y2 = window.height / 1;
    
 }
 
@@ -44,6 +47,7 @@ function reCalc() {
 }
 onmousedown = function(e) {
 
+
     if (!select && enabled) {
         document.onselectstart = () => {
             return false; // cancel selection
@@ -57,8 +61,7 @@ onmousedown = function(e) {
         return true; // cancel selection
       };
     
-    x2 = x2
-    y2 = y2
+   
 };
 onmousemove = function(e) {
     document.onselectstart = () => {
@@ -80,7 +83,11 @@ onmousemove = function(e) {
 };
 onmouseup = function(e) {
     select = true
-    div.hidden = 0;
+
+    if (!select && enabled) {
+        div.hidden = 0;
+    }
+    
   
 };
 

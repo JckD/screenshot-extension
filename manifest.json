@@ -3,7 +3,8 @@
     "description" : "An easy to use screen shot extension",
     "version" : "1.0",
     "manifest_version" : 3,
-    "content-scripts": [{
+    "content_scripts": [{
+        "matches": ["http://*/*"],
         "css": ["content.css"]
     }],
     "background" : {

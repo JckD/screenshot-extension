@@ -27,10 +27,34 @@ function takeScreenShot(displayMediaOptions) {
 }
     
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
-    console.log('screenshot')
+    console.log(info)
 
-  chrome.scripting.executeScript({
-      target: { tabId: tab.id},
+    // chrome.scripting.executeScript({
+    //     boolean : 'let enabled = true;'
+    // }, function() {
+    //     chrome.scripting.executeScript({
+      
+    //         target: { tabId: tab.id},
+    //         files: ['content-script.js']
+    //     }); 
+
+    // })
+
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id, allFrames : true},
       files: ['content-script.js']
-  });
+    }, function() {
+
+        chrome.tabs.sendMessage(tab.id, {data : true})
+    })
+    let enabled = true;
+    
+    // chrome.tabs.executeScript(tabId, {
+    //     file: 'content-script.js'
+    // });
+
+ 
+
+
+ 
 });
